@@ -1,3 +1,5 @@
+package data
+
 class Event(
     var id: Int,
     var name: String,

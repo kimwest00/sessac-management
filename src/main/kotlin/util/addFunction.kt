@@ -1,3 +1,7 @@
+package util
+
+import data.CompanyData
+
 /*
 * console로 employee를 받는 함수
 *  */
