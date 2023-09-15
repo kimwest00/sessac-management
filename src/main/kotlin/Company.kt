@@ -6,5 +6,6 @@ class Company(
     var phone: String,
     var idolList: ArrayList<Idol>
 ) {
+    
 
 }
