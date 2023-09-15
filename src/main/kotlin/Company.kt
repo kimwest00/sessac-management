@@ -1,11 +1,16 @@
 class Company(
-    val id: Int,
-    var name: String,
-    var address: String,
-    var CEO: String,
-    var phone: String,
-    var idolList: ArrayList<Idol>
+    val compData: CompanyData
 ) {
-    
+    fun updateCompany() {
 
+    }
+
+    fun readCompany() {
+        for (field in compData.javaClass.declaredFields) {
+            field.isAccessible = true
+            val value = field.get(compData)
+            println("${field.name}: $value")
+        }
+
+    }
 }

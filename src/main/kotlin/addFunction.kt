@@ -1,8 +1,10 @@
 data class CompanyData(
+    val id: Int,
     var name: String,
     var address: String,
     var CEO: String,
     var phone: String,
+    var idolList: ArrayList<Idol> = arrayListOf()
 )
 
 
@@ -10,8 +12,8 @@ data class CompanyData(
 * console로 employee를 받는 함수
 *  */
 fun addEmployee(): CompanyData? {
-
-    try {
+    val id = Generator.generateEmpNum()
+    return try {
         print("회사 이름 : ")
         val name = readLine()!!
         print("주소 : ")
@@ -21,9 +23,9 @@ fun addEmployee(): CompanyData? {
         print("전화번호 : ")
         val phone = readLine()!!
 
-        return CompanyData(name, address, ceo, phone)
+        CompanyData(id, name, address, ceo, phone)
     } catch (_: NullPointerException) {
         println("잘못 입력")
-        return null
+        null
     }
 }
