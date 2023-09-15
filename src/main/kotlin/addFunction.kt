@@ -1,13 +1,3 @@
-data class CompanyData(
-    val id: Int,
-    var name: String,
-    var address: String,
-    var CEO: String,
-    var phone: String,
-    var idolList: ArrayList<Idol> = arrayListOf()
-)
-
-
 /*
 * console로 employee를 받는 함수
 *  */

@@ -4,5 +4,8 @@ fun main(args: Array<String>) {
     val cmp = tempCompany?.let { Company(it) }
 
     cmp?.readCompany()
+    cmp?.updateCompany("name", "시흥")
+
+    cmp?.readCompany()
 
 }
