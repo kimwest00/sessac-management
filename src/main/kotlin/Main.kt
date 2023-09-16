@@ -49,4 +49,6 @@ fun main(args: Array<String>) {
     addIdol()
     readIdol("민")
     addEvent()
+    readEvent("새싹")
+
 }

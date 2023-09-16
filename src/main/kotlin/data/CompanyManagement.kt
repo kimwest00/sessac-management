@@ -49,12 +49,18 @@ fun updateCompany(target: String, inputData: String, id: Int) {
     }
 }
 
-fun readCompany(comp: Company) {
-    for (field in comp.javaClass.declaredFields) {
-        field.isAccessible = true
-        val value = field.get(comp)
-        println("${field.name}: $value")
+fun readCompany(name: String) {
+    val company = searchCompany(name)
+    if (company != null) {
+        for (field in company.javaClass.declaredFields) {
+            field.isAccessible = true
+            val value = field.get(company)
+            println("${field.name}: $value")
+        }
+    } else {
+        println("해당하는 행사가 없습니다. 다시 검색해주세요")
     }
+
 }
 
 fun deleteCompany(id: Int) {

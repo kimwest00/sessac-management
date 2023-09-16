@@ -42,11 +42,16 @@ fun updateEvent(target: String, inputData: String, id: Int) {
     }
 }
 
-fun readEvent(event: Event) {
-    for (field in event.javaClass.declaredFields) {
-        field.isAccessible = true
-        val value = field.get(event)
-        println("${field.name}: $value")
+fun readEvent(name: String) {
+    val event = searchEvent(name)
+    if(event != null){
+        for (field in event.javaClass.declaredFields) {
+            field.isAccessible = true
+            val value = field.get(event)
+            println("${field.name}: $value")
+        }
+    }else{
+        println("해당하는 행사가 없습니다. 다시 검색해주세요")
     }
 }
 

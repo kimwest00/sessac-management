@@ -53,7 +53,7 @@ fun searchIdol(name: String): Idol? {
 }
 
 fun readIdol(name: String) {
-    var idol = searchIdol(name)
+    val idol = searchIdol(name)
     if(idol != null){
         for (field in idol.javaClass.declaredFields) {
             field.isAccessible = true
