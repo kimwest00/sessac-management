@@ -1,3 +1,4 @@
+import method.notNullInput
 import method.mangement.*
 import method.menuUpdate
 
@@ -5,12 +6,13 @@ import method.menuUpdate
 fun menuComp() {
     println("1. 회사 생성\t2. 회사 수정\t3. 전체 회사 출력\t4. 특정 회사 정보 출력\t5. 회사 삭제\n")
     val menu: String?
-    menu = ConsoleReader.consoleScanner()
+    menu = readLine()!!
     when (menu) {
         "1" -> {
             addCompany()
             println("추가 완료!")
         }
+
         "2" -> {
             menuUpdate("회사", searchCompany)
         }
@@ -18,15 +20,14 @@ fun menuComp() {
         "3" -> allPrint(0)
         "4" -> {
             println("어느 회사를 보시겠습니까?")
-            val target = ConsoleReader.consoleScanner()
-            readCompany(target)
+            val target = notNullInput("회사", searchCompany)
+            readCompany(target!!)
         }
 
         "5" -> {
             println("어느 회사를 삭제하시겠습니까?")
-            val target = ConsoleReader.consoleScanner()
-            if (searchCompany(target) == null) println("없는 회사 입력")
-            searchCompany(target)?.let { deleteCompany(it.id) }
+            val target = notNullInput("회사", searchCompany)
+            deleteCompany(target!!)
             println("삭제 완료")
         }
 
@@ -46,6 +47,7 @@ fun menuIdol() {
             addIdol()
             println("추가 완료!")
         }
+
         "2" -> {
             menuUpdate("회사", searchIdol)
         }
@@ -53,48 +55,41 @@ fun menuIdol() {
         "3" -> allPrint(1)
         "4" -> {
             println("어느 아이돌의 정보를 보시겠습니까?")
-            val target = ConsoleReader.consoleScanner()
-            readIdol(target)
+            val target = notNullInput("아이돌", searchIdol)
+            readIdol(target!!)
         }
 
         "5" -> {
             println("어느 아이돌을 보내겠습니까?")
-            val idolTarget = ConsoleReader.consoleScanner()
-            if (searchIdol(idolTarget) == null) println("없는 아이돌 입력")
+            val idolTarget = notNullInput("아이돌", searchIdol)
 
             println("어느 행사에 보내겠습니까?")
-            val eventTarget = ConsoleReader.consoleScanner()
-            if (searchEvent(eventTarget) == null) println("없는 행사 입력")
+            val eventTarget = notNullInput("행사", searchEvent)
 
-            if (addIdolEvent(idolTarget, eventTarget)) println("즐거운 행사")
-            else println("행사 실패")
+            if (addIdolEvent(idolTarget!!, eventTarget!!)) println("행사 컨택 완료")
         }
 
         "6" -> {
-            val target = ConsoleReader.consoleScanner()
-            if (searchIdol(target) == null) println("없는 아이돌 입력")
-            readIdolEvent(target)
+            val target = notNullInput("아이돌", searchIdol)
+            readIdolEvent(target!!)
         }
 
         "7" -> {
             println("어느 아이돌의 행사를 삭제하겠습니까?")
-            val idolTarget = ConsoleReader.consoleScanner()
-            if (searchIdol(idolTarget) == null) println("없는 아이돌 입력")
+            val idolTarget = notNullInput("아이돌", searchIdol)
 
             println("어느 행사를 삭제하시겠습니까?")
-            val eventTarget = ConsoleReader.consoleScanner()
-            if (searchEvent(eventTarget) == null) println("없는 행사 입력")
+            val eventTarget = notNullInput("행사", searchEvent)
 
-            deleteIdolEvent(idolTarget, eventTarget)
+            deleteIdolEvent(idolTarget!!, eventTarget!!)
             println("${idolTarget}의 ${eventTarget} 행사 삭제 완료")
         }
 
         "8" -> {
             println("어느 아이돌을 삭제하시겠습니까?")
-            val target = ConsoleReader.consoleScanner()
-            if (searchIdol(target) == null) println("없는 아이돌 입력")
-            searchIdol(target)?.let { deleteIdol(it.name) }
-            println("아이돌 삭제 완료")
+            val target = notNullInput("아이돌", searchIdol)
+            deleteIdol(target!!)
+            println("삭제 완료")
         }
 
         else -> {
@@ -113,21 +108,22 @@ fun menuEvent() {
             addEvent()
             println("추가 완료")
         }
+
         "2" -> {
-            menuUpdate("회사", searchEvent)        }
+            menuUpdate("회사", searchEvent)
+        }
 
         "3" -> allPrint(2)
         "4" -> {
-            println("어느 행사를 보시겠습니까?")
-            val target = ConsoleReader.consoleScanner()
-            readEvent(target)
+            println("어느 행사의 정보를 보시겠습니까?")
+            val target = notNullInput("행사", searchEvent)
+            readEvent(target!!)
         }
 
         "5" -> {
             println("어느 행사를 삭제하시겠습니까?")
-            val target = ConsoleReader.consoleScanner()
-            if (searchEvent(target) == null) println("없는 행사 입력")
-            searchEvent(target)?.let { deleteEvent(it.id) }
+            val target = notNullInput("행사", searchEvent)
+            deleteEvent(target!!)
             println("삭제 완료")
         }
 

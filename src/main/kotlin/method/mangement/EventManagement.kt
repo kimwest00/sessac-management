@@ -69,10 +69,10 @@ fun readEvent(name: String) {
     }
 }
 
-fun deleteEvent(id: Int) {
+fun deleteEvent(name: String) {
     var targetIdx = -1
     ObjectManagement.eventList.forEachIndexed { idx, event ->
-        if (event.id == id) targetIdx = idx
+        if (event.name == name) targetIdx = idx
     }
     ObjectManagement.eventList.removeAt(targetIdx)
 }

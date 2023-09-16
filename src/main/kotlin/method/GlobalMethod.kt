@@ -8,7 +8,7 @@ fun <T> checkExist(comment: String, searchFunction: (String) -> T): String? {
     var isExist = false
     var tmpField: String? = null
     while (!isExist) {
-        print("${comment}: ")
+        print("${comment} 입력 : ")
         tmpField = readln()
         searchFunction(tmpField)?.let {
             println("중복되는 ${comment}이 있습니다. 다시 입력해주세요 ")
@@ -20,11 +20,11 @@ fun <T> checkExist(comment: String, searchFunction: (String) -> T): String? {
 }
 
 
-fun <T> isNotExist(comment: String, searchFunction: (String) -> T): String? {
+fun <T> notNullInput(comment: String, searchFunction: (String) -> T): String? {
     var isExist = false
     var tmpField: String? = null
     while (!isExist) {
-        print("${comment}: ")
+        print("${comment} 입력 : ")
         tmpField = readln()
         searchFunction(tmpField)?.let {
             isExist = true
@@ -36,9 +36,9 @@ fun <T> isNotExist(comment: String, searchFunction: (String) -> T): String? {
 }
 
 fun <T> menuUpdate(comment: String, searchFunction: (String) -> T) {
-    val target = isNotExist(comment, searchFunction = searchFunction)
+    val target = notNullInput(comment, searchFunction = searchFunction)
 
-    println("바꿀 $comment 정보가 무엇입니까?")
+    println("바꿀 $comment 정보를 숫자로 입력해 주세요.")
     // 상수화
     println("1. 이름\t2. 주소\t3. 대표\t4. 연락처")
     val infoIdx = readLine()!!.toInt() - 1
