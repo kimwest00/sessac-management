@@ -2,7 +2,7 @@ package data
 
 import util.Generator
 
-fun addEvent(event: Event) {
+fun addEvent() {
     val id = Generator.generateEmpNum()
     try {
         print("행사 이름 : ")
@@ -26,7 +26,14 @@ fun searchEvent(name: String): Event? {
     }
     return null
 }
-
+fun searchEvent(id: Int): String? {
+    ObjectManagement.eventList.forEach {
+        if (it.id == id) {
+            return it.name
+        }
+    }
+    return null
+}
 
 fun updateEvent(target: String, inputData: String, id: Int) {
     for (it in ObjectManagement.eventList) {
@@ -42,11 +49,16 @@ fun updateEvent(target: String, inputData: String, id: Int) {
     }
 }
 
-fun readEvent(event: Event) {
-    for (field in event.javaClass.declaredFields) {
-        field.isAccessible = true
-        val value = field.get(event)
-        println("${field.name}: $value")
+fun readEvent(name: String) {
+    val event = searchEvent(name)
+    if(event != null){
+        for (field in event.javaClass.declaredFields) {
+            field.isAccessible = true
+            val value = field.get(event)
+            println("${field.name}: $value")
+        }
+    }else{
+        println("해당하는 행사가 없습니다. 다시 검색해주세요")
     }
 }
 
