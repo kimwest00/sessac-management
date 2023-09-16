@@ -1,6 +1,6 @@
 package data
 
-data class IdolData(
+data class Idol(
     var id: Int,
     var name: String,
     var companyName: String,

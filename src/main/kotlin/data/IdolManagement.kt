@@ -3,7 +3,6 @@ package data
 import util.Generator
 
 class IdolManagement {
-    var idolList = ArrayList<IdolData>()
     fun addIdol(cmp: CompanyManagement) {
         val id = Generator.generateEmpNum()
         //회사 이름이 검색이 안될경우도 있으므로 미리 초기화
@@ -27,7 +26,7 @@ class IdolManagement {
             val song = readLine()!!
 
             if (companyName != "") {
-                idolList.add(IdolData(id, name, companyName, gender, song))
+                ObjectManagement.idolList.add(Idol(id, name, companyName, gender, song))
             }
 
         } catch (_: NullPointerException) {
@@ -36,8 +35,8 @@ class IdolManagement {
     }
 
     fun searchIdol(name: String){
-        lateinit var idol:IdolData
-        idolList.forEach {
+        lateinit var idol:Idol
+        ObjectManagement.idolList.forEach {
             if (it.name == name) {
                 idol = it
             }
@@ -51,7 +50,7 @@ class IdolManagement {
     }
 
     fun updateIdol(target: String, inputData: String, id: Int) {
-        for (it in idolList) {
+        for (it in ObjectManagement.idolList) {
             if (it.id == id) {
                 when (target) {
                     "name" -> it.name = inputData
@@ -65,9 +64,9 @@ class IdolManagement {
     }
 
     fun deleteIdol(name:String) {
-        for (it in idolList) {
+        for (it in ObjectManagement.idolList) {
             if (it.name == name) {
-                idolList.remove(it)
+                ObjectManagement.idolList.remove(it)
                 break
             }
         }

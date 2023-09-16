@@ -3,13 +3,11 @@ package data
 import util.Generator
 
 class CompanyManagement {
-    var compList = ArrayList<CompanyData>()
+
 
     // 1. 회사 이름을 입력 받는다
     // 2. 회사 이름 기준 검색
     // 3. 객체를 찾으면 접근하여 속성 변환
-
-
     fun addCompany() {
         val id = Generator.generateEmpNum()
         try {
@@ -22,7 +20,7 @@ class CompanyManagement {
             print("전화번호 : ")
             val phone = readLine()!!
 
-            compList.add(CompanyData(id, name, address, ceo, phone))
+            ObjectManagement.compList.add(Company(id, name, address, ceo, phone))
         } catch (_: NullPointerException) {
             println("잘못 입력")
         }
@@ -30,8 +28,9 @@ class CompanyManagement {
 
     // 반환값 : id
     fun searchCompany(name: String): Int? {
-        compList.forEach {
+        ObjectManagement.compList.forEach {
             if (it.name == name) {
+                readCompany(it)
                 return it.id
             }
         }
@@ -40,7 +39,7 @@ class CompanyManagement {
 
 
     fun updateCompany(target: String, inputData: String, id: Int) {
-        for (it in compList) {
+        for (it in ObjectManagement.compList) {
             if (it.id == id) {
                 when (target) {
                     "name" -> it.name = inputData
@@ -53,11 +52,19 @@ class CompanyManagement {
         }
     }
 
+    fun readCompany(comp: Company) {
+        for (field in comp.javaClass.declaredFields) {
+            field.isAccessible = true
+            val value = field.get(comp)
+            println("${field.name}: $value")
+        }
+    }
+
     fun deleteCompany(id: Int) {
         var targetIdx = -1
-        compList.forEachIndexed { idx, comp ->
+        ObjectManagement.compList.forEachIndexed { idx, comp ->
             if (comp.id == id) targetIdx = idx
         }
-        compList.removeAt(targetIdx)
+        ObjectManagement.compList.removeAt(targetIdx)
     }
 }

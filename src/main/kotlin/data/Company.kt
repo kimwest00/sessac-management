@@ -1,6 +1,6 @@
 package data
 
-data class CompanyData(
+data class Company(
     val id: Int,
     var name: String,
     var address: String,
@@ -8,16 +8,3 @@ data class CompanyData(
     var phone: String,
     var idolIdList: ArrayList<Int> = arrayListOf()
 )
-
-class Company(
-    val compData: CompanyData
-) {
-
-    fun readCompany() {
-        for (field in compData.javaClass.declaredFields) {
-            field.isAccessible = true
-            val value = field.get(compData)
-            println("${field.name}: $value")
-        }
-    }
-}
