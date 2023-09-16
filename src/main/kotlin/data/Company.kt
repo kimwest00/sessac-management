@@ -12,14 +12,7 @@ data class CompanyData(
 class Company(
     val compData: CompanyData
 ) {
-    fun updateCompany(target: String, inputData: String) {
-        when (target) {
-            "name" -> compData.name = inputData
-            "address" -> compData.address = inputData
-            "CEO" -> compData.CEO = inputData
-            "phone" -> compData.phone = inputData
-        }
-    }
+
 
     fun readCompany() {
         for (field in compData.javaClass.declaredFields) {
