@@ -1,3 +1,5 @@
+package inteface
+
 interface Management {
     //TODO: 1.Add
     fun <T>addObject(data:T)

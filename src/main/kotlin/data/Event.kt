@@ -1,3 +1,5 @@
+package data
+
 
 data class EventData(
     var id: Int,
