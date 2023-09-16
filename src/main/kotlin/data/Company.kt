@@ -13,7 +13,6 @@ class Company(
     val compData: CompanyData
 ) {
 
-
     fun readCompany() {
         for (field in compData.javaClass.declaredFields) {
             field.isAccessible = true

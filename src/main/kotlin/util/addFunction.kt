@@ -25,24 +25,3 @@ fun addEmployee(): CompanyData? {
     }
 }
 
-fun addIdol(): IdolData? {
-    val id = Generator.generateEmpNum()
-    return try {
-        print("이름 : ")
-        val name = readLine()!!
-
-        print("회사 이름: ")
-        val companyName = readLine()!!
-
-        print("성별 : ")
-        val gender = readLine()!!
-
-        print("대표 노래 : ")
-        val song = readLine()!!
-
-        IdolData(id, name, companyName, gender, song)
-    } catch (_: NullPointerException) {
-        println("잘못 입력")
-        null
-    }
-}
