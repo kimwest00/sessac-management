@@ -1,5 +1,9 @@
 import data.*
-import java.io.ObjectOutputStream
+import method.mangement.*
+import util.compFile
+import util.eventFile
+import util.idolFile
+import util.originFilePath
 import kotlin.io.println
 
 val tempComp = ObjectManagement.compList
@@ -49,8 +53,14 @@ suspend fun main() {
     addCompany()
     addIdol()
     readIdol("민")
+    addEvent()
 
-    multiSerializeObject()
+    multiSerializeObject(originFilePath+ idolFile, ObjectManagement.idolList)
+    multiSerializeObject(originFilePath+ compFile, ObjectManagement.compList)
+    multiSerializeObject(originFilePath+ eventFile, ObjectManagement.eventList)
+    multiDeserializeObject<Idol>(originFilePath+ idolFile)
+    multiDeserializeObject<Company>(originFilePath+ compFile)
+    multiDeserializeObject<Event>(originFilePath+ eventFile)
 //    addEvent()
 //    addEvent()
 //    readEvent("새싹")
