@@ -44,21 +44,21 @@ fun searchIdol(name: String): Idol? {
             idol = it
         }
     }
-   if(idol != null){
-       return idol
-   }
+    if (idol != null) {
+        return idol
+    }
     return null
 }
 
 fun readIdol(name: String) {
     val idol = searchIdol(name)
-    if(idol != null){
+    if (idol != null) {
         for (field in idol.javaClass.declaredFields) {
             field.isAccessible = true
             val value = field.get(idol)
             println("${field.name}: $value")
         }
-    }else{
+    } else {
         println("해당하는 아이돌이 없습니다. 다시 검색해주세요")
     }
 }
@@ -86,14 +86,46 @@ fun deleteIdol(name: String) {
     }
 }
 
-fun addIdolEvent(idolName: String,eventName: String):Boolean {
-    var idolIdx:Int = -1
+fun addIdolEvent(idolName: String, eventName: String): Boolean {
+    var idolIdx: Int = -1
     var tmpEventId = searchEvent(eventName)?.let { it } ?: run {
         return false
     }
-    searchIdol(idolName)?.let { idolIdx = ObjectManagement.idolList.indexOf(it)} ?: run {
+    searchIdol(idolName)?.let { idolIdx = ObjectManagement.idolList.indexOf(it) } ?: run {
         return false
     }
     ObjectManagement.idolList[idolIdx].eventIdList.add(tmpEventId.id)
     return true
 }
+
+fun deleteIdolEvent(idolName: String, eventName: String): Boolean {
+    var idolIdx: Int = -1
+    var tmpEventId = searchEvent(eventName)?.let { it } ?: run {
+        return false
+    }
+    searchIdol(idolName)?.let { idolIdx = ObjectManagement.idolList.indexOf(it) } ?: run {
+        return false
+    }
+    ObjectManagement.idolList[idolIdx].eventIdList.remove(tmpEventId.id)
+    return true
+}
+
+fun readIdolEvent(idolName: String) {
+    var tmpIdol: Idol? = null
+    searchIdol(idolName)?.let { tmpIdol = it }
+    if (tmpIdol != null) {
+        if (tmpIdol!!.eventIdList.isEmpty()) {
+            print("${idolName}은 현재 행사가 없습니다")
+        } else {
+            print("${idolName}은 아래와 같은 행사에 참여중입니다.")
+
+            for (id in tmpIdol!!.eventIdList) {
+                println(searchEvent(id))
+            }
+        }
+
+    } else {
+        println("해당하는 아이돌이 없습니다.")
+    }
+}
+

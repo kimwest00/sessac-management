@@ -50,6 +50,10 @@ fun main(args: Array<String>) {
     addIdol()
     readIdol("민")
     addEvent()
+    addEvent()
     readEvent("새싹")
     addIdolEvent("민","새싹")
+    addIdolEvent("민","새싹2")
+    deleteIdolEvent("민","새싹")
+    readIdolEvent("민")
 }

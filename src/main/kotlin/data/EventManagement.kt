@@ -26,7 +26,14 @@ fun searchEvent(name: String): Event? {
     }
     return null
 }
-
+fun searchEvent(id: Int): String? {
+    ObjectManagement.eventList.forEach {
+        if (it.id == id) {
+            return it.name
+        }
+    }
+    return null
+}
 
 fun updateEvent(target: String, inputData: String, id: Int) {
     for (it in ObjectManagement.eventList) {
