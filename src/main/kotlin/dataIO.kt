@@ -1,6 +1,11 @@
+import data.Company
+import data.ObjectManagement
 import kotlinx.coroutines.*
+import method.mangement.*
 import java.io.*
 
+val menuName = mapOf("1" to "회사", "2" to "아이돌", "3" to "행사")
+var flag = true
 
 // print 컨트롤러
 fun printController() {
@@ -10,52 +15,57 @@ fun printController() {
             printMain()
             line = ConsoleReader.consoleScanner()
             if (line.equals("exit")) break
-            fileController(line)
-
+            consoleController(line)
         } while (true)
-
     } catch (_: Exception) {
     }
 
 }
 
-// 파일 컨트롤러
-fun fileController(inputMenu: String?) {
-    val filePath = "./src/main/kotlin/example.txt"
-    var idx = 0
-
-    val fileIn = BufferedReader(FileReader(filePath))
-    printCompany(fileIn)
-    fileIn.close()
-
-    fileUpdate("Test", filePath)
-}
-
-// text를 update 시켜주는 함수
-fun fileUpdate(text: String, filePath: String) {
-    val fileOut = BufferedWriter(FileWriter(filePath, true))
-
-    fileOut.appendLine(text)
-    fileOut.flush()
-    fileOut.close()
-}
-
-// 모든 내역 출력
-fun printCompany(file: BufferedReader) {
-    file.forEachLine {
-        println(it)
+// 콘솔 컨트롤러
+fun consoleController(inputMenu: String?) {
+    flag = false
+    println("선택한 메뉴 : ${menuName[inputMenu]}")
+    when (inputMenu) {
+        "1" -> menuComp()
+        "2" -> menuIdol()
+        "3" -> menuEvent()
+        else -> {
+            flag = true
+            println("잘못 입력")
+        }
     }
 }
 
+fun allPrint(choiceMenu: Int) {
+    when (choiceMenu) {
+        0 -> {
+            println("회사 목록은 다음과 같습니다.")
+            for (item in ObjectManagement.compList) print("${item.name}, ")
+            println("")
+        }
+        1 -> {
+            println("아이돌 목록은 다음과 같습니다.")
+            for (item in ObjectManagement.idolList) print("${item.name}, ")
+            println("")
+
+        }
+        2 -> {
+            println("행사 목록은 다음과 같습니다.")
+            for (item in ObjectManagement.eventList) print("${item.name}, ")
+            println("")
+
+        }
+        else -> ObjectManagement.compList
+    }
+}
 
 fun printMain() {
-    println(
-        """
-원하시는 메뉴를 선택해주세요. (ex, 1-3)
+    println("\n" +
+        """            
+열람 할 정보를 선택해주세요. (ex, 1-3)
+1.회사		2. 아이돌	3. 행사
 
-1-1 : 회사 생성 	1-2 : 회사 수정 		1-3 : 전체 회사 출력		1-4 : 회사 검색
-2-1 : 아이돌 추가	2-2 : 아이돌 정보 수정	2-3 : 전체 아이돌 출력	2-4 : 아이돌 검색		2-5 : 아이돌 삭제
-3-1 : 행사 생성	3-2 : 행사 정보 수정		3-3 : 전체 행사 출력		3-4 : 행사 검색	3-5 : 행사 삭제
 종료를 원하시면 "exit"을 입력해주세요.
     """.trimIndent()
     )
