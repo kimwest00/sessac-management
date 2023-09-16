@@ -1,6 +1,8 @@
 import data.*
+import method.file.loadFile
 import method.file.multiDeserializeObject
 import method.file.multiSerializeObject
+import method.file.saveFile
 import method.mangement.*
 import util.compFile
 import util.eventFile
@@ -51,26 +53,15 @@ fun allPrint() {
 
 
 suspend fun main() {
-//    companyTest()
-    ObjectManagement.idolList =  multiDeserializeObject<Idol>(originFilePath+ idolFile)
-    ObjectManagement.compList =  multiDeserializeObject<Company>(originFilePath+ compFile)
-    ObjectManagement.eventList = multiDeserializeObject<Event>(originFilePath+ eventFile)
+
+    loadFile()
+
     addCompany()
     addIdol()
     readIdol("민")
     addEvent()
     println(ObjectManagement.idolList)
 
-    multiSerializeObject(originFilePath+ idolFile, ObjectManagement.idolList)
-    multiSerializeObject(originFilePath+ compFile, ObjectManagement.compList)
-    multiSerializeObject(originFilePath+ eventFile, ObjectManagement.eventList)
+    saveFile()
 
-
-//    addEvent()
-//    addEvent()
-//    readEvent("새싹")
-//    addIdolEvent("민","새싹")
-//    addIdolEvent("민","새싹2")
-//    deleteIdolEvent("민","새싹")
-//    readIdolEvent("민")
 }
