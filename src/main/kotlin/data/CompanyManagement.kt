@@ -27,11 +27,10 @@ class CompanyManagement {
     }
 
     // 반환값 : id
-    fun searchCompany(name: String): Int? {
+    fun searchCompany(name: String): Company? {
         ObjectManagement.compList.forEach {
             if (it.name == name) {
-                readCompany(it)
-                return it.id
+                return it
             }
         }
         return null

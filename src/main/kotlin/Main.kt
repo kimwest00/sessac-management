@@ -1,8 +1,10 @@
 import data.Company
 import data.CompanyManagement
+import data.ObjectManagement
 import java.io.ObjectOutputStream
 
 val testCompManagement = CompanyManagement()
+val tempComp = ObjectManagement.compList
 
 fun companyTest() {
     addTest(testCompManagement)
@@ -19,7 +21,7 @@ fun addTest(testCompManagement: CompanyManagement) {
 
 fun updateTest(testCompManagement: CompanyManagement) {
     testCompManagement.updateCompany(
-        "name", "LG", testCompManagement.compList[0].id
+        "name", "LG", tempComp[0].id
     )
     println("updateTest : ")
     allPrint(testCompManagement)
@@ -32,13 +34,13 @@ fun searchTest(testCompManagement: CompanyManagement) {
 
 fun deleteTest(testCompManagement: CompanyManagement) {
     testCompManagement.addCompany()
-    testCompManagement.deleteCompany(testCompManagement.compList.get(0).id)
+    testCompManagement.deleteCompany(tempComp.get(0).id)
     println("deleteTest : ")
     allPrint(testCompManagement)
 }
 
 fun allPrint(testCompManagement: CompanyManagement) {
-    testCompManagement.compList.forEach {
+    tempComp.forEach {
         println(it)
     }
 }

@@ -19,14 +19,13 @@ class EventManagement {
             println("잘못 입력")
         }    }
 
-    fun searchEvent(name: String): ArrayList<Int> {
-        val idList = ArrayList<Int>()
+    fun searchEvent(name: String): Event? {
         ObjectManagement.eventList.forEach {
             if (it.name == name) {
-                idList.add(it.id)
+                return it
             }
         }
-        return idList
+        return null
     }
 
 
@@ -43,4 +42,7 @@ class EventManagement {
             }
         }
     }
+
+
+
 }
