@@ -1,3 +1,4 @@
+import data.Company
 import data.ObjectManagement
 import kotlinx.coroutines.*
 import method.mangement.*
@@ -69,6 +70,7 @@ fun menuComp() {
             val target = ConsoleReader.consoleScanner()
             readCompany(target)
             if (searchCompany(target) == null) println("없는 회사 입력")
+            searchCompany(target)?.let { deleteCompany(it.id) }
         }
 
         else -> {
@@ -88,22 +90,32 @@ fun menuEvent() {
 }
 
 fun allPrint(choiceMenu: Int) {
-    val choice = when (choiceMenu) {
-        0 -> ObjectManagement.compList
-        1 -> ObjectManagement.idolList
-        2 -> ObjectManagement.eventList
+    when (choiceMenu) {
+        0 -> {
+            println("회사 목록은 다음과 같습니다.")
+            for (item in ObjectManagement.compList) print("${item.name}, ")
+            println("")
+        }
+        1 -> {
+            println("아이돌 목록은 다음과 같습니다.")
+            for (item in ObjectManagement.idolList) print("${item.name}, ")
+            println("")
+
+        }
+        2 -> {
+            println("행사 목록은 다음과 같습니다.")
+            for (item in ObjectManagement.eventList) print("${item.name}, ")
+            println("")
+
+        }
         else -> ObjectManagement.compList
-    }
-    choice.forEach {
-        // 현재 직렬화 되어 있어 해당 부분 fix 필요
-        print("회사 : ${it}")
     }
 }
 
 fun printMain() {
     println(
         """
-열람 할 정보를 선택해주세요. (ex, 1-3)
+\n열람 할 정보를 선택해주세요. (ex, 1-3)
 1.회사		2. 아이돌	3. 행사
 
 종료를 원하시면 "exit"을 입력해주세요.
