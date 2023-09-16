@@ -2,27 +2,17 @@ package method.mangement
 
 import data.Idol
 import data.ObjectManagement
+import method.checkExist
 import util.Generator
 
 fun addIdol() {
     val id = Generator.generateEmpNum()
-    //회사 이름이 검색이 안될경우도 있으므로 미리 초기화
-    var companyName: String = ""
+    var name: String?
+    var companyName: String?
     try {
-        print("이름 : ")
-        val name = readLine()!!
+        name = checkExist("아이돌 이름", searchFunction = searchIdol)
 
-        var isExist = false
-        while (!isExist) {
-            print("회사 이름: ")
-            companyName = readLine()!!
-            searchCompany(companyName)?.let {
-                isExist = true
-                companyName = it.name
-            } ?: run {
-                println("해당 회사가 존재하지 않습니다. 다시 입력해주세요")
-            }
-        }
+        companyName = checkExist("회사 이름", searchFunction = searchCompany)
 
         print("성별 : ")
         val gender = readLine()!!
@@ -30,8 +20,10 @@ fun addIdol() {
         print("대표 노래 : ")
         val song = readLine()!!
 
-        if (companyName != "") {
+        if (companyName != null && name != null) {
             ObjectManagement.idolList.add(Idol(id, name, companyName, gender, song))
+        } else {
+            println("아이돌 등록에 실패했습니다. 다시 등록해주세요")
         }
 
     } catch (_: NullPointerException) {
@@ -39,17 +31,14 @@ fun addIdol() {
     }
 }
 
-fun searchIdol(name: String): Idol? {
+val searchIdol: (String) -> Idol? = { name ->
     var idol: Idol? = null
     ObjectManagement.idolList.forEach {
         if (it.name == name) {
             idol = it
         }
     }
-    if (idol != null) {
-        return idol
-    }
-    return null
+    idol
 }
 
 fun readIdol(name: String) {
