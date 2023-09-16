@@ -28,7 +28,6 @@ fun updateTest(testCompManagement: CompanyManagement) {
 fun searchTest(testCompManagement: CompanyManagement) {
     testCompManagement.searchCompany("LG")
     println("searchTest : ")
-    allPrint(testCompManagement)
 }
 
 fun deleteTest(testCompManagement: CompanyManagement) {
