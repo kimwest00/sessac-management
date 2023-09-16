@@ -20,8 +20,8 @@ suspend fun <T> multiSerializeObject(filePath: String, list: ArrayList<T>) {
     }
 }
 
-suspend fun <T> multiDeserializeObject(fp: String) {
-    val test = withContext(Dispatchers.IO) {
+suspend fun <T> multiDeserializeObject(fp: String):ArrayList<T> {
+    var objectList = withContext(Dispatchers.IO) {
         ObjectInputStream(FileInputStream(fp)).use {
             arrayListOf<T>().run {
                 add(it.readObject() as T)
@@ -29,5 +29,5 @@ suspend fun <T> multiDeserializeObject(fp: String) {
             }
         }
     }
-    println(test)
+    return objectList
 }

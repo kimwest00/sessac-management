@@ -1,4 +1,6 @@
 import data.*
+import method.file.multiDeserializeObject
+import method.file.multiSerializeObject
 import method.mangement.*
 import util.compFile
 import util.eventFile
@@ -58,9 +60,10 @@ suspend fun main() {
     multiSerializeObject(originFilePath+ idolFile, ObjectManagement.idolList)
     multiSerializeObject(originFilePath+ compFile, ObjectManagement.compList)
     multiSerializeObject(originFilePath+ eventFile, ObjectManagement.eventList)
-    multiDeserializeObject<Idol>(originFilePath+ idolFile)
-    multiDeserializeObject<Company>(originFilePath+ compFile)
-    multiDeserializeObject<Event>(originFilePath+ eventFile)
+    ObjectManagement.idolList =  multiDeserializeObject<Idol>(originFilePath+ idolFile)
+    ObjectManagement.compList =  multiDeserializeObject<Company>(originFilePath+ compFile)
+    ObjectManagement.eventList = multiDeserializeObject<Event>(originFilePath+ eventFile)
+
 //    addEvent()
 //    addEvent()
 //    readEvent("새싹")
