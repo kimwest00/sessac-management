@@ -1,6 +1,5 @@
 package data
 
-import com.sun.org.apache.xpath.internal.operations.Bool
 import util.Generator
 
 fun addIdol() {
@@ -12,8 +11,7 @@ fun addIdol() {
         val name = readLine()!!
 
         var isExist = false
-
-        while (isExist) {
+        while (!isExist) {
             print("회사 이름: ")
             companyName = readLine()!!
             searchCompany(companyName)?.let {

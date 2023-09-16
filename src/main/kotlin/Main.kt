@@ -46,9 +46,10 @@ fun allPrint() {
 
 fun main(args: Array<String>) {
 //    companyTest()
+    addCompany()
     addIdol()
     readIdol("민")
     addEvent()
     readEvent("새싹")
-
+    addIdolEvent("민","새싹")
 }
