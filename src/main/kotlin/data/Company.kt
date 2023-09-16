@@ -6,7 +6,7 @@ data class CompanyData(
     var address: String,
     var CEO: String,
     var phone: String,
-    var idolList: ArrayList<Idol> = arrayListOf()
+    var idolIdList: ArrayList<Int> = arrayListOf()
 )
 
 class Company(
