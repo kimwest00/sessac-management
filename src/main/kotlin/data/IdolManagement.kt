@@ -59,4 +59,13 @@ class IdolManagement {
             }
         }
     }
+
+    fun deleteIdol(name:String) {
+        for (it in idolList) {
+            if (it.name == name) {
+                idolList.remove(it)
+                break
+            }
+        }
+    }
 }
