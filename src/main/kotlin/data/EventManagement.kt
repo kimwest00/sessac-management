@@ -1,15 +1,13 @@
 package data
 
 class EventManagement {
-    var eventList = ArrayList<EventData>()
-
-    fun addEvent(event: EventData) {
-        eventList.add(event)
+    fun addEvent(event: Event) {
+        ObjectManagement.eventList.add(event)
     }
 
     fun searchEvent(name: String): ArrayList<Int> {
         val idList = ArrayList<Int>()
-        eventList.forEach {
+        ObjectManagement.eventList.forEach {
             if (it.name == name) {
                 idList.add(it.id)
             }
@@ -19,7 +17,7 @@ class EventManagement {
 
 
     fun updateEvent(target: String, inputData: String, id: Int) {
-        for (it in eventList) {
+        for (it in ObjectManagement.eventList) {
             if (it.id == id) {
                 when (target) {
                     "name" -> it.name = inputData
