@@ -3,7 +3,7 @@ package data
 import util.Generator
 
 class CompanyManagement {
-    var compList = ArrayList<CompanyData>()
+    var compList = ArrayList<Company>()
 
     // 1. 회사 이름을 입력 받는다
     // 2. 회사 이름 기준 검색
@@ -22,7 +22,7 @@ class CompanyManagement {
             print("전화번호 : ")
             val phone = readLine()!!
 
-            compList.add(CompanyData(id, name, address, ceo, phone))
+            compList.add(Company(id, name, address, ceo, phone))
         } catch (_: NullPointerException) {
             println("잘못 입력")
         }
@@ -32,6 +32,7 @@ class CompanyManagement {
     fun searchCompany(name: String): Int? {
         compList.forEach {
             if (it.name == name) {
+                readCompany(it)
                 return it.id
             }
         }
@@ -50,6 +51,14 @@ class CompanyManagement {
                 }
                 break
             }
+        }
+    }
+
+    fun readCompany(comp: Company) {
+        for (field in comp.javaClass.declaredFields) {
+            field.isAccessible = true
+            val value = field.get(comp)
+            println("${field.name}: $value")
         }
     }
 
