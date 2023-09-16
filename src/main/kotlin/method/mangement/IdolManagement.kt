@@ -1,5 +1,7 @@
-package data
+package method.mangement
 
+import data.Idol
+import data.ObjectManagement
 import util.Generator
 
 fun addIdol() {

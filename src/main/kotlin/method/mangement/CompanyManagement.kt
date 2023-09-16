@@ -1,5 +1,7 @@
-package data
+package method.mangement
 
+import data.Company
+import data.ObjectManagement
 import util.Generator
 
 

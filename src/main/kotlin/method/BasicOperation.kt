@@ -1,4 +1,4 @@
-package inteface
+package method
 
 interface BasicOperation {
     //TODO: 1.Create

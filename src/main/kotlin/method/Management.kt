@@ -1,4 +1,4 @@
-package inteface
+package method
 
 interface Management {
     //TODO: 1.Add

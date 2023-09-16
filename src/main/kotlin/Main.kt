@@ -1,5 +1,13 @@
 import data.*
-import java.io.ObjectOutputStream
+import method.file.loadFile
+import method.file.multiDeserializeObject
+import method.file.multiSerializeObject
+import method.file.saveFile
+import method.mangement.*
+import util.compFile
+import util.eventFile
+import util.idolFile
+import util.originFilePath
 import kotlin.io.println
 
 val tempComp = ObjectManagement.compList
@@ -44,16 +52,16 @@ fun allPrint() {
 }
 
 
-fun main(args: Array<String>) {
-//    companyTest()
+suspend fun main() {
+
+    loadFile()
+
     addCompany()
     addIdol()
     readIdol("민")
     addEvent()
-    addEvent()
-    readEvent("새싹")
-    addIdolEvent("민","새싹")
-    addIdolEvent("민","새싹2")
-    deleteIdolEvent("민","새싹")
-    readIdolEvent("민")
+    println(ObjectManagement.idolList)
+
+    saveFile()
+
 }
