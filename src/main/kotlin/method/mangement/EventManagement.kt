@@ -2,31 +2,36 @@ package method.mangement
 
 import data.Event
 import data.ObjectManagement
+import method.checkExist
 import util.Generator
 
 fun addEvent() {
     val id = Generator.generateEmpNum()
+    val name:String?
     try {
-        print("행사 이름 : ")
-        val name = readLine()!!
+        name = checkExist("행사 이름", searchEvent)
         print("장소 : ")
         val address = readLine()!!
         print("content : ")
         val content = readLine()!!
         print("날짜 : ")
         val date = readLine()!!
-        ObjectManagement.eventList.add(Event(id, name, address, content, date))
+        if (name != null) {
+            ObjectManagement.eventList.add(Event(id, name, address, content, date))
+        }else {
+            println("행사 등록에 실패했습니다. 다시 등록해주세요")
+        }
     } catch (_: NullPointerException) {
         println("잘못 입력")
     }    }
 
-fun searchEvent(name: String): Event? {
+val searchEvent:(String)-> Event? = {name->
     ObjectManagement.eventList.forEach {
         if (it.name == name) {
-            return it
+            it
         }
     }
-    return null
+   null
 }
 fun searchEvent(id: Int): String? {
     ObjectManagement.eventList.forEach {

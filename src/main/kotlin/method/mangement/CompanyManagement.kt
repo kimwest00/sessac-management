@@ -1,7 +1,9 @@
 package method.mangement
 
 import data.Company
+import data.Idol
 import data.ObjectManagement
+import method.checkExist
 import util.Generator
 
 
@@ -10,32 +12,44 @@ import util.Generator
 // 3. 객체를 찾으면 접근하여 속성 변환
 fun addCompany() {
     val id = Generator.generateEmpNum()
+    val name: String?
     try {
-        print("회사 이름 : ")
-        val name = readLine()!!
+        name = checkExist("회사 이름", searchCompany)
         print("주소 : ")
         val address = readLine()!!
         print("대표 : ")
         val ceo = readLine()!!
         print("전화번호 : ")
         val phone = readLine()!!
-
-        ObjectManagement.compList.add(Company(id, name, address, ceo, phone))
+        if (name != null) {
+            ObjectManagement.compList.add(Company(id, name, address, ceo, phone))
+        } else {
+            println("회사 등록에 실패했습니다. 다시 등록해주세요")
+        }
     } catch (_: NullPointerException) {
         println("잘못 입력")
     }
 }
 
 // 반환값 : id
-fun searchCompany(name: String): Company? {
+fun searchCompany(id: Int): Company? {
     ObjectManagement.compList.forEach {
-        if (it.name == name) {
+        if (it.id == id) {
             return it
         }
     }
     return null
 }
 
+val searchCompany: (String) -> Company? = { name ->
+    var tmpCompany:Company? = null
+    ObjectManagement.compList.forEach {
+        if (it.name == name) {
+            tmpCompany = it
+        }
+    }
+    tmpCompany
+}
 
 fun updateCompany(target: String, inputData: String, id: Int) {
     for (it in ObjectManagement.compList) {
