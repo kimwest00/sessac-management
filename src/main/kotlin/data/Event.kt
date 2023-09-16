@@ -1,5 +1,7 @@
 package data
 
+import java.io.Serializable
+
 
 data class Event(
     var id: Int,
@@ -7,4 +9,4 @@ data class Event(
     var content: String,
     var address: String,
     var date: String
-)
+) : Serializable

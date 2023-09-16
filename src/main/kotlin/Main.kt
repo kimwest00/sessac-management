@@ -44,16 +44,18 @@ fun allPrint() {
 }
 
 
-fun main(args: Array<String>) {
+suspend fun main() {
 //    companyTest()
     addCompany()
     addIdol()
     readIdol("민")
-    addEvent()
-    addEvent()
-    readEvent("새싹")
-    addIdolEvent("민","새싹")
-    addIdolEvent("민","새싹2")
-    deleteIdolEvent("민","새싹")
-    readIdolEvent("민")
+
+    multiSerializeObject()
+//    addEvent()
+//    addEvent()
+//    readEvent("새싹")
+//    addIdolEvent("민","새싹")
+//    addIdolEvent("민","새싹2")
+//    deleteIdolEvent("민","새싹")
+//    readIdolEvent("민")
 }

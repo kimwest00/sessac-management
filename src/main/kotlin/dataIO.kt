@@ -1,7 +1,36 @@
-import java.io.BufferedReader
-import java.io.BufferedWriter
-import java.io.FileReader
-import java.io.FileWriter
+import data.ObjectManagement
+import kotlinx.coroutines.*
+import java.io.*
+
+const val filePath = "./src/main/kotlin/file/data.txt"
+
+suspend fun multiSerializeObject() {
+    val message = withContext(Dispatchers.IO) {
+        ObjectOutputStream(FileOutputStream(filePath)).use {
+            with(it) {
+                ObjectManagement.idolList.forEach {
+                    writeObject(it)
+                }
+                flush()
+            }
+        }
+        "여러 객체직렬화"
+    }
+    println(message)
+}
+
+//suspend fun multiDeserializeObject() = runBlocking {
+//    val songInfo = withContext(Dispatchers.IO) {
+//        ObjectInputStream(FileInputStream("./serialization/k_pop.ser")).use {
+//            arrayListOf<SongInfo>().run {
+//                add(it.readObject() as SongInfo)
+//                add(it.readObject() as SongInfo)
+//                this
+//            }
+//        }
+//    }
+//    println(songInfo)
+//}
 
 // print 컨트롤러
 fun printController() {
