@@ -1,11 +1,26 @@
 package data
 
-class EventManagement {
-    var eventList = ArrayList<EventData>()
+import util.Generator
 
-    fun addEvent(event: EventData) {
-        eventList.add(event)
-    }
+class EventManagement {
+    var eventList = ArrayList<Event>()
+
+    fun addEvent(event: Event) {
+        val id = Generator.generateEmpNum()
+        try {
+            print("행사 이름 : ")
+            val name = readLine()!!
+            print("장소 : ")
+            val address = readLine()!!
+            print("content : ")
+            val content = readLine()!!
+            print("날짜 : ")
+            val date = readLine()!!
+
+            eventList.add(Event(id, name, address, content, date))
+        } catch (_: NullPointerException) {
+            println("잘못 입력")
+        }    }
 
     fun searchEvent(name: String): ArrayList<Int> {
         val idList = ArrayList<Int>()
