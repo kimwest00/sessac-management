@@ -35,16 +35,20 @@ class IdolManagement {
         }
     }
 
-    fun searchIdol(name: String): ArrayList<Int> {
-        val idList = ArrayList<Int>()
+    fun searchIdol(name: String){
+        lateinit var idol:IdolData
         idolList.forEach {
             if (it.name == name) {
-                idList.add(it.id)
+                idol = it
             }
         }
-        return idList
+        //initialized 되기전 예외처리
+        for (field in idol.javaClass.declaredFields) {
+            field.isAccessible = true
+            val value = field.get(idol)
+            println("${field.name}: $value")
+        }
     }
-
 
     fun updateIdol(target: String, inputData: String, id: Int) {
         for (it in idolList) {
@@ -67,5 +71,9 @@ class IdolManagement {
                 break
             }
         }
+    }
+
+    fun addIdolEvent(eventId: Int){
+
     }
 }

@@ -1,21 +1,50 @@
 import data.Company
 import data.CompanyManagement
-import util.addEmployee
 import java.io.ObjectOutputStream
 
+val testCompManagement = CompanyManagement()
+
+fun companyTest() {
+    addTest(testCompManagement)
+    updateTest(testCompManagement)
+    searchTest(testCompManagement)
+    deleteTest(testCompManagement)
+}
+
+fun addTest(testCompManagement: CompanyManagement) {
+    testCompManagement.addCompany()
+    println("addTest : ")
+    allPrint(testCompManagement)
+}
+
+fun updateTest(testCompManagement: CompanyManagement) {
+    testCompManagement.updateCompany(
+        "name", "LG", testCompManagement.compList[0].id
+    )
+    println("updateTest : ")
+    allPrint(testCompManagement)
+}
+
+fun searchTest(testCompManagement: CompanyManagement) {
+    testCompManagement.searchCompany("LG")
+    println("searchTest : ")
+    allPrint(testCompManagement)
+}
+
+fun deleteTest(testCompManagement: CompanyManagement) {
+    testCompManagement.addCompany()
+    testCompManagement.deleteCompany(testCompManagement.compList.get(0).id)
+    println("deleteTest : ")
+    allPrint(testCompManagement)
+}
+
+fun allPrint(testCompManagement: CompanyManagement) {
+    testCompManagement.compList.forEach {
+        println(it)
+    }
+}
+
+
 fun main(args: Array<String>) {
-    val tempCompany = addEmployee()
-
-    val cmp = tempCompany?.let { Company(it) }
-//    cmp?.readCompany()
-//    cmp?.updateCompany("name", "시흥")
-//    cmp?.readCompany()
-
-    val mange = CompanyManagement()
-    cmp?.compData?.let { mange.addCompany(it) }
-    val list = mange.searchCompany("삼성")
-    mange.updateCompany("name", "LG", list[0])
-    println(mange.compList.get(0))
-
-//    printController()
+    companyTest()
 }
