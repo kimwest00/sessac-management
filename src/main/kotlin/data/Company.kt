@@ -1,3 +1,5 @@
+package data
+
 data class CompanyData(
     val id: Int,
     var name: String,

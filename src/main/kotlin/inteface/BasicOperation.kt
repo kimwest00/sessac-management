@@ -1,3 +1,5 @@
+package inteface
+
 interface BasicOperation {
     //TODO: 1.Create
     fun <T>createData(data:T)

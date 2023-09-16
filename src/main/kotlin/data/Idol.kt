@@ -1,3 +1,5 @@
+package data
+
 class Idol(
     var id: Int,
     var name: String,
