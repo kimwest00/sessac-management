@@ -52,17 +52,19 @@ fun allPrint() {
 
 suspend fun main() {
 //    companyTest()
+    ObjectManagement.idolList =  multiDeserializeObject<Idol>(originFilePath+ idolFile)
+    ObjectManagement.compList =  multiDeserializeObject<Company>(originFilePath+ compFile)
+    ObjectManagement.eventList = multiDeserializeObject<Event>(originFilePath+ eventFile)
     addCompany()
     addIdol()
     readIdol("민")
     addEvent()
+    println(ObjectManagement.idolList)
 
     multiSerializeObject(originFilePath+ idolFile, ObjectManagement.idolList)
     multiSerializeObject(originFilePath+ compFile, ObjectManagement.compList)
     multiSerializeObject(originFilePath+ eventFile, ObjectManagement.eventList)
-    ObjectManagement.idolList =  multiDeserializeObject<Idol>(originFilePath+ idolFile)
-    ObjectManagement.compList =  multiDeserializeObject<Company>(originFilePath+ compFile)
-    ObjectManagement.eventList = multiDeserializeObject<Event>(originFilePath+ eventFile)
+
 
 //    addEvent()
 //    addEvent()
