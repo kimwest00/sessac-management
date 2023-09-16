@@ -42,10 +42,10 @@ fun searchEvent(id: Int): String? {
     return null
 }
 
-fun updateEvent(target: String, inputData: String, id: Int) {
+fun updateEvent(target: String, inputData: String, type: String) {
     for (it in ObjectManagement.eventList) {
-        if (it.id == id) {
-            when (target) {
+        if (it.name == target) {
+            when (type) {
                 "name" -> it.name = inputData
                 "address" -> it.address = inputData
                 "content" -> it.content = inputData

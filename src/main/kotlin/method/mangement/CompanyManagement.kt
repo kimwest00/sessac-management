@@ -51,10 +51,10 @@ val searchCompany: (String) -> Company? = { name ->
     tmpCompany
 }
 
-fun updateCompany(target: String, inputData: String, id: Int) {
+fun updateCompany(target: String, inputData: String, type: String) {
     for (it in ObjectManagement.compList) {
-        if (it.id == id) {
-            when (target) {
+        if (it.name == target) {
+            when (type) {
                 "name" -> it.name = inputData
                 "address" -> it.address = inputData
                 "CEO" -> it.CEO = inputData
@@ -74,7 +74,7 @@ fun readCompany(name: String) {
             println("${field.name}: $value")
         }
     } else {
-        println("해당하는 행사가 없습니다. 다시 검색해주세요")
+        println("해당하는 회사가 없습니다. 다시 검색해주세요")
     }
 
 }

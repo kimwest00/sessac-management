@@ -1,4 +1,5 @@
 import method.mangement.*
+import method.menuUpdate
 
 
 fun menuComp() {
@@ -11,19 +12,7 @@ fun menuComp() {
             println("추가 완료!")
         }
         "2" -> {
-            println("어느 회사를 수정하시겠습니까?")
-            val target = ConsoleReader.consoleScanner()
-
-            val tempCompo = searchCompany(target)
-            if (tempCompo == null) println("없는 회사 입력")
-
-            println("수정 할 회사 이름을 입력해 주세요.")
-            val name = ConsoleReader.consoleScanner()
-            val tempName = searchCompany(name)
-            if (tempName != null) println("중복 된 이름 입력")
-
-            searchCompany(target)?.let { updateCompany(target, name, it.id) }
-            println("수정 완료!")
+            menuUpdate("회사", searchCompany)
         }
 
         "3" -> allPrint(0)
@@ -58,19 +47,7 @@ fun menuIdol() {
             println("추가 완료!")
         }
         "2" -> {
-            println("어느 아이돌을 수정하시겠습니까?")
-            val target = ConsoleReader.consoleScanner()
-
-            val tempIdol = searchIdol(target)
-            if (tempIdol == null) println("없는 아이돌 입력")
-
-            println("수정 할 회사 이름을 입력해 주세요.")
-            val name = ConsoleReader.consoleScanner()
-            val tempName = searchIdol(name)
-            if (tempName != null) println("중복 된 이름 입력")
-
-            searchIdol(target)?.let { updateIdol(target, name, it.id) }
-            println("수정 완료!")
+            menuUpdate("회사", searchIdol)
         }
 
         "3" -> allPrint(1)
@@ -137,20 +114,7 @@ fun menuEvent() {
             println("추가 완료")
         }
         "2" -> {
-            println("어느 행사를 수정하시겠습니까?")
-            val target = ConsoleReader.consoleScanner()
-
-            val tempEvent = searchEvent(target)
-            if (tempEvent == null) println("없는 행사 입력")
-
-            println("수정 할 행사 이름을 입력해 주세요.")
-            val name = ConsoleReader.consoleScanner()
-            val tempName = searchEvent(name)
-            if (tempName != null) println("중복 된 이름 입력")
-
-            searchEvent(target)?.let { updateEvent(target, name, it.id) }
-            println("수정 완료!")
-        }
+            menuUpdate("회사", searchEvent)        }
 
         "3" -> allPrint(2)
         "4" -> {

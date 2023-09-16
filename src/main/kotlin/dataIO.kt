@@ -14,7 +14,7 @@ fun printController() {
         do {
             printMain()
             line = ConsoleReader.consoleScanner()
-            if (line.equals("exit")) break
+            if (line == "exit") break
             consoleController(line)
         } while (true)
     } catch (_: Exception) {
@@ -36,6 +36,9 @@ fun consoleController(inputMenu: String?) {
         }
     }
 }
+
+// 입력 및 null 확인
+
 
 fun allPrint(choiceMenu: Int) {
     when (choiceMenu) {
