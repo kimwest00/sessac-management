@@ -3,8 +3,6 @@ package data
 import util.Generator
 
 class EventManagement {
-    var eventList = ArrayList<Event>()
-
     fun addEvent(event: Event) {
         val id = Generator.generateEmpNum()
         try {
@@ -16,15 +14,14 @@ class EventManagement {
             val content = readLine()!!
             print("날짜 : ")
             val date = readLine()!!
-
-            eventList.add(Event(id, name, address, content, date))
+            ObjectManagement.eventList.add(Event(id, name, address, content, date))
         } catch (_: NullPointerException) {
             println("잘못 입력")
         }    }
 
     fun searchEvent(name: String): ArrayList<Int> {
         val idList = ArrayList<Int>()
-        eventList.forEach {
+        ObjectManagement.eventList.forEach {
             if (it.name == name) {
                 idList.add(it.id)
             }
@@ -34,7 +31,7 @@ class EventManagement {
 
 
     fun updateEvent(target: String, inputData: String, id: Int) {
-        for (it in eventList) {
+        for (it in ObjectManagement.eventList) {
             if (it.id == id) {
                 when (target) {
                     "name" -> it.name = inputData

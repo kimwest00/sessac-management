@@ -7,5 +7,4 @@ data class Event(
     var content: String,
     var address: String,
     var date: String
-) {
-}
+)
