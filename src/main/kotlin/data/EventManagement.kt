@@ -42,10 +42,18 @@ fun updateEvent(target: String, inputData: String, id: Int) {
     }
 }
 
-fun readCompany(event: Event) {
+fun readEvent(event: Event) {
     for (field in event.javaClass.declaredFields) {
         field.isAccessible = true
         val value = field.get(event)
         println("${field.name}: $value")
     }
+}
+
+fun deleteEvent(id: Int) {
+    var targetIdx = -1
+    ObjectManagement.eventList.forEachIndexed { idx, event ->
+        if (event.id == id) targetIdx = idx
+    }
+    ObjectManagement.eventList.removeAt(targetIdx)
 }
