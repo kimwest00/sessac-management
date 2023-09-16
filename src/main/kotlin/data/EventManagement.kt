@@ -2,7 +2,7 @@ package data
 
 import util.Generator
 
-fun addEvent(event: Event) {
+fun addEvent() {
     val id = Generator.generateEmpNum()
     try {
         print("행사 이름 : ")

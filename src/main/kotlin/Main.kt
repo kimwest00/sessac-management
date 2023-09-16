@@ -1,45 +1,43 @@
-import data.Company
-import data.CompanyManagement
-import data.ObjectManagement
+import data.*
 import java.io.ObjectOutputStream
+import kotlin.io.println
 
-val testCompManagement = CompanyManagement()
 val tempComp = ObjectManagement.compList
 
 fun companyTest() {
-    addTest(testCompManagement)
-    updateTest(testCompManagement)
-    searchTest(testCompManagement)
-    deleteTest(testCompManagement)
+    addTest()
+    updateTest()
+    searchTest()
+    deleteTest()
 }
 
-fun addTest(testCompManagement: CompanyManagement) {
-    testCompManagement.addCompany()
+fun addTest() {
+    addCompany()
     println("addTest : ")
-    allPrint(testCompManagement)
+    allPrint()
 }
 
-fun updateTest(testCompManagement: CompanyManagement) {
-    testCompManagement.updateCompany(
+fun updateTest() {
+    updateCompany(
         "name", "LG", tempComp[0].id
     )
     println("updateTest : ")
-    allPrint(testCompManagement)
+    allPrint()
 }
 
-fun searchTest(testCompManagement: CompanyManagement) {
-    testCompManagement.searchCompany("LG")
+fun searchTest() {
+    searchCompany("LG")
     println("searchTest : ")
 }
 
-fun deleteTest(testCompManagement: CompanyManagement) {
-    testCompManagement.addCompany()
-    testCompManagement.deleteCompany(tempComp.get(0).id)
+fun deleteTest() {
+    addCompany()
+    deleteCompany(tempComp.get(0).id)
     println("deleteTest : ")
-    allPrint(testCompManagement)
+    allPrint()
 }
 
-fun allPrint(testCompManagement: CompanyManagement) {
+fun allPrint() {
     tempComp.forEach {
         println(it)
     }
@@ -47,5 +45,8 @@ fun allPrint(testCompManagement: CompanyManagement) {
 
 
 fun main(args: Array<String>) {
-    companyTest()
+//    companyTest()
+    addIdol()
+    readIdol("민")
+    addEvent()
 }
