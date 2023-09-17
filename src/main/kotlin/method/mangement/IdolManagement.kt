@@ -7,8 +7,8 @@ import util.Generator
 
 fun addIdol() {
     val id = Generator.generateEmpNum()
-    var name: String?
-    var companyName: String?
+    val name: String?
+    val companyName: String?
     try {
         name = checkExist("아이돌 이름", searchFunction = searchIdol)
 
@@ -54,10 +54,10 @@ fun readIdol(name: String) {
     }
 }
 
-fun updateIdol(target: String, inputData: String, id: Int) {
+fun updateIdol(target: String, inputData: String, type: String) {
     for (it in ObjectManagement.idolList) {
-        if (it.id == id) {
-            when (target) {
+        if (it.name == target) {
+            when (type) {
                 "name" -> it.name = inputData
                 "companyName" -> it.companyName = inputData
                 "gender" -> it.gender = inputData
@@ -79,7 +79,7 @@ fun deleteIdol(name: String) {
 
 fun addIdolEvent(idolName: String, eventName: String): Boolean {
     var idolIdx: Int = -1
-    var tmpEventId = searchEvent(eventName)?.let { it } ?: run {
+    val tmpEventId = searchEvent(eventName) ?: run {
         return false
     }
     searchIdol(idolName)?.let { idolIdx = ObjectManagement.idolList.indexOf(it) } ?: run {
@@ -91,7 +91,7 @@ fun addIdolEvent(idolName: String, eventName: String): Boolean {
 
 fun deleteIdolEvent(idolName: String, eventName: String): Boolean {
     var idolIdx: Int = -1
-    var tmpEventId = searchEvent(eventName)?.let { it } ?: run {
+    val tmpEventId = searchEvent(eventName) ?: run {
         return false
     }
     searchIdol(idolName)?.let { idolIdx = ObjectManagement.idolList.indexOf(it) } ?: run {

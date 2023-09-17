@@ -42,10 +42,10 @@ fun searchEvent(id: Int): String? {
     return null
 }
 
-fun updateEvent(target: String, inputData: String, id: Int) {
+fun updateEvent(target: String, inputData: String, type: String) {
     for (it in ObjectManagement.eventList) {
-        if (it.id == id) {
-            when (target) {
+        if (it.name == target) {
+            when (type) {
                 "name" -> it.name = inputData
                 "address" -> it.address = inputData
                 "content" -> it.content = inputData
@@ -69,10 +69,10 @@ fun readEvent(name: String) {
     }
 }
 
-fun deleteEvent(id: Int) {
+fun deleteEvent(name: String) {
     var targetIdx = -1
     ObjectManagement.eventList.forEachIndexed { idx, event ->
-        if (event.id == id) targetIdx = idx
+        if (event.name == name) targetIdx = idx
     }
     ObjectManagement.eventList.removeAt(targetIdx)
 }
