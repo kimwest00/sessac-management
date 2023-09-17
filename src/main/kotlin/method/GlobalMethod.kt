@@ -63,3 +63,11 @@ fun getDataList(type: String): List<String> {
     }
     return objectIdx
 }
+
+fun menuInput(endNumber: Int): String {
+    while (true) {
+        val menu = readlnOrNull()
+        if (menu.isNullOrEmpty() || menu.toInt() !in 1..endNumber) continue
+        return menu
+    }
+}

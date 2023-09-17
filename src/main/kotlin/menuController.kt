@@ -1,16 +1,16 @@
 import method.notNullInput
 import method.mangement.*
+import method.menuInput
 import method.menuUpdate
 
 
 fun menuComp() {
-    println("1. 회사 생성\t2. 회사 수정\t3. 전체 회사 출력\t4. 특정 회사 정보 출력\t5. 회사 삭제\n")
-    val menu: String?
-    menu = readLine()!!
+    println(menuInfo("회사"))
+    val menu = menuInput(5)
     when (menu) {
         "1" -> {
             addCompany()
-            println("추가 완료!")
+            println(completeAdd)
         }
 
         "2" -> {
@@ -28,24 +28,18 @@ fun menuComp() {
             println("어느 회사를 삭제하시겠습니까?")
             val target = notNullInput("회사", searchCompany)
             deleteCompany(target!!)
-            println("삭제 완료")
-        }
-
-        else -> {
-            flag = true
-            println("범위를 벗어난 입력")
+            println(completeDelete)
         }
     }
 }
 
 fun menuIdol() {
-    println("1. 아이돌 생성\t2. 아이돌 수정\t3. 전체 아이돌 출력\t4. 특정 아이돌 정보 출력 5. 아이돌 행사 보내기\t6. 아이돌 행사 출력\t7. 아이돌 행사 삭제 \t8. 아이돌 삭제")
-    val menu: String?
-    menu = ConsoleReader.consoleScanner()
+    println(menuInfo("아이돌") + idolEventInfo)
+    val menu = menuInput(8)
     when (menu) {
         "1" -> {
             addIdol()
-            println("추가 완료!")
+            println(completeAdd)
         }
 
         "2" -> {
@@ -60,6 +54,13 @@ fun menuIdol() {
         }
 
         "5" -> {
+            println("어느 아이돌을 삭제하시겠습니까?")
+            val target = notNullInput("아이돌", searchIdol)
+            deleteIdol(target!!)
+            println(completeDelete)
+        }
+
+        "6" -> {
             println("어느 아이돌을 보내겠습니까?")
             val idolTarget = notNullInput("아이돌", searchIdol)
 
@@ -69,12 +70,12 @@ fun menuIdol() {
             if (addIdolEvent(idolTarget!!, eventTarget!!)) println("행사 컨택 완료")
         }
 
-        "6" -> {
+        "7" -> {
             val target = notNullInput("아이돌", searchIdol)
             readIdolEvent(target!!)
         }
 
-        "7" -> {
+        "8" -> {
             println("어느 아이돌의 행사를 삭제하겠습니까?")
             val idolTarget = notNullInput("아이돌", searchIdol)
 
@@ -84,33 +85,20 @@ fun menuIdol() {
             deleteIdolEvent(idolTarget!!, eventTarget!!)
             println("${idolTarget}의 ${eventTarget} 행사 삭제 완료")
         }
-
-        "8" -> {
-            println("어느 아이돌을 삭제하시겠습니까?")
-            val target = notNullInput("아이돌", searchIdol)
-            deleteIdol(target!!)
-            println("삭제 완료")
-        }
-
-        else -> {
-            flag = true
-            println("범위를 벗어난 입력")
-        }
     }
 }
 
 fun menuEvent() {
-    println("1.행사 생성\t2. 행사 수정\t3. 전체 행사 출력\t4. 특정 행사 정보 출력\t5. 행사 삭제")
-    val menu: String?
-    menu = ConsoleReader.consoleScanner()
+    println(menuInfo("메뉴"))
+    val menu = menuInput(5)
     when (menu) {
         "1" -> {
             addEvent()
-            println("추가 완료")
+            println(completeAdd)
         }
 
         "2" -> {
-            menuUpdate("회사", searchEvent)
+            menuUpdate("행사", searchEvent)
         }
 
         "3" -> allPrint(2)
@@ -124,12 +112,7 @@ fun menuEvent() {
             println("어느 행사를 삭제하시겠습니까?")
             val target = notNullInput("행사", searchEvent)
             deleteEvent(target!!)
-            println("삭제 완료")
-        }
-
-        else -> {
-            flag = true
-            println("범위를 벗어난 입력")
+            println(completeDelete)
         }
     }
 }
