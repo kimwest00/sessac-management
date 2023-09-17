@@ -7,7 +7,7 @@ import util.Generator
 
 fun addEvent() {
     val id = Generator.generateEmpNum()
-    val name:String?
+    val name: String?
     try {
         name = checkExist("행사 이름", searchEvent)
         print("장소 : ")
@@ -18,21 +18,23 @@ fun addEvent() {
         val date = readLine()!!
         if (name != null) {
             ObjectManagement.eventList.add(Event(id, name, address, content, date))
-        }else {
+        } else {
             println("행사 등록에 실패했습니다. 다시 등록해주세요")
         }
     } catch (_: NullPointerException) {
         println("잘못 입력")
-    }    }
+    }
+}
 
-val searchEvent:(String)-> Event? = {name->
+val searchEvent: (String) -> Event? = { name ->
     ObjectManagement.eventList.forEach {
         if (it.name == name) {
             it
         }
     }
-   null
+    null
 }
+
 fun searchEvent(id: Int): String? {
     ObjectManagement.eventList.forEach {
         if (it.id == id) {
@@ -58,14 +60,10 @@ fun updateEvent(target: String, inputData: String, type: String) {
 
 fun readEvent(name: String) {
     val event = searchEvent(name)
-    if(event != null){
-        for (field in event.javaClass.declaredFields) {
-            field.isAccessible = true
-            val value = field.get(event)
-            println("${field.name}: $value")
-        }
-    }else{
-        println("해당하는 행사가 없습니다. 다시 검색해주세요")
+    for (field in event!!.javaClass.declaredFields) {
+        field.isAccessible = true
+        val value = field.get(event)
+        println("${field.name}: $value")
     }
 }
 

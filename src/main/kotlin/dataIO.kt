@@ -9,13 +9,13 @@ var flag = true
 
 // print 컨트롤러
 fun printController() {
-    var line: String?
+    var menu: String?
     try {
         do {
             printMain()
-            line = ConsoleReader.consoleScanner()
-            if (line == "exit") break
-            consoleController(line)
+            menu = menuInput(3)
+            if (menu == "exit") break
+            consoleController(menu)
         } while (true)
     } catch (_: Exception) {
     }
@@ -24,53 +24,41 @@ fun printController() {
 
 // 콘솔 컨트롤러
 fun consoleController(inputMenu: String?) {
-    flag = false
     println("선택한 메뉴 : ${menuName[inputMenu]}")
     when (inputMenu) {
         "1" -> menuComp()
         "2" -> menuIdol()
         "3" -> menuEvent()
-        else -> {
-            flag = true
-            println("잘못 입력")
-        }
+        else -> println("")
     }
 }
 
 fun menuInput(endNumber: Int): String {
     while (true) {
         val menu = readlnOrNull()
-        if (menu.isNullOrEmpty() || menu.toInt() !in 1..endNumber) continue
+        if (menu.isNullOrEmpty() || menu.toInt() !in 1..endNumber)
+        {
+            println("올바른 메뉴 번호를 입력해주세요.")
+            continue
+        }
         return menu
     }
 }
 
-fun allPrint(choiceMenu: Int) {
-    when (choiceMenu) {
-        0 -> {
-            println("회사 목록은 다음과 같습니다.")
-            for (item in ObjectManagement.compList) print("${item.name}, ")
-            println("")
-        }
-        1 -> {
-            println("아이돌 목록은 다음과 같습니다.")
-            for (item in ObjectManagement.idolList) print("${item.name}, ")
-            println("")
-
-        }
-        2 -> {
-            println("행사 목록은 다음과 같습니다.")
-            for (item in ObjectManagement.eventList) print("${item.name}, ")
-            println("")
-
-        }
-        else -> ObjectManagement.compList
+fun allPrint(comment: String) {
+    println("$comment 목록은 다음과 같습니다.")
+    when (comment) {
+        COMP -> for (item in ObjectManagement.compList) print("${item.name} | ")
+        IDOL -> for (item in ObjectManagement.idolList) print("${item.name} | ")
+        EVENT -> for (item in ObjectManagement.eventList) print("${item.name} | ")
+        else -> println("")
     }
 }
 
 fun printMain() {
-    println("\n" +
-        """            
+    println(
+        "\n" +
+                """            
 열람 할 정보를 선택해주세요. (ex, 1-3)
 1.회사		2. 아이돌	3. 행사
 

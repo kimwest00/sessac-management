@@ -3,10 +3,10 @@ package method
 import COMP
 import IDOL
 import EVENT
-import completeUpdate
-import fieldList
-import fieldListIdx
-import infofIdx
+import UPDATE_MESSAGE
+import FIELD
+import FIELD_IDX
+import INFO_IDX
 import menuInput
 import method.mangement.updateCompany
 import method.mangement.updateEvent
@@ -47,8 +47,8 @@ fun <T> menuUpdate(comment: String, searchFunction: (String) -> T) {
     val target = notNullInput(comment, searchFunction = searchFunction)
 
     println("바꿀 $comment 정보를 숫자로 입력해 주세요.")
-    println(fieldList(comment))
-    val infoIdx = menuInput(fieldListIdx[infofIdx(comment)]).toInt() - 1
+    println(FIELD(comment))
+    val infoIdx = menuInput(FIELD_IDX[INFO_IDX(comment)]).toInt() - 1
 
     println("무엇으로 바꾸시겠습니까?")
     val goal = checkExist(comment, searchFunction)
@@ -58,7 +58,7 @@ fun <T> menuUpdate(comment: String, searchFunction: (String) -> T) {
         IDOL -> updateIdol(target!!, goal!!, getDataList(comment)[infoIdx])
         EVENT -> updateEvent(target!!, goal!!, getDataList(comment)[infoIdx])
     }
-    println("${comment} 정보 $completeUpdate")
+    println("${comment} 정보 $UPDATE_MESSAGE")
 }
 
 fun getDataList(type: String): List<String> {

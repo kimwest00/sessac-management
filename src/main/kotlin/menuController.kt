@@ -4,115 +4,104 @@ import method.menuUpdate
 
 
 fun menuComp() {
-    println(menuInfo("회사"))
+    println(CHOICE_MENU(COMP))
     val menu = menuInput(5)
     when (menu) {
-        "1" -> {
+        "1" -> { // 회사 추가
             addCompany()
-            println(completeAdd)
+            println(COMP + ADD_MESSAGE)
         }
 
-        "2" -> {
-            menuUpdate("회사", searchCompany)
-        }
-
-        "3" -> allPrint(0)
-        "4" -> {
-            println("어느 회사를 보시겠습니까?")
-            val target = notNullInput("회사", searchCompany)
+        "2" -> menuUpdate(COMP, searchCompany) // 회사 업데이트
+        "3" -> allPrint(COMP) // 전체 회사 출력
+        "4" -> { // 특정 회사 정보 출력
+            println(READ_COMMENT(COMP))
+            val target = notNullInput(COMP, searchCompany)
             readCompany(target!!)
-
         }
 
-        "5" -> {
-            println("어느 회사를 삭제하시겠습니까?")
-            val target = notNullInput("회사", searchCompany)
+        "5" -> { // 회사 삭제
+            println(DELETE_COMMENT(COMP))
+            val target = notNullInput(COMP, searchCompany)
             deleteCompany(target!!)
-            println(completeDelete)
+            println(DELETE_MESSAGE)
         }
     }
 }
 
 fun menuIdol() {
-    println(menuInfo("아이돌") + idolEventInfo)
+    println(CHOICE_MENU(IDOL) + IDOL_EVENT_MENU)
     val menu = menuInput(8)
     when (menu) {
-        "1" -> {
+        "1" -> { // 아이돌 생성
             addIdol()
-            println(completeAdd)
+            println(IDOL + ADD_MESSAGE)
         }
 
-        "2" -> {
-            menuUpdate("회사", searchIdol)
-        }
-
-        "3" -> allPrint(1)
-        "4" -> {
-            println("어느 아이돌의 정보를 보시겠습니까?")
-            val target = notNullInput("아이돌", searchIdol)
+        "2" -> menuUpdate(IDOL, searchIdol) // 아이돌 수정
+        "3" -> allPrint(IDOL) // 전체 아이돌 출력
+        "4" -> { // 특정 아이돌 정보 출력
+            println(READ_COMMENT(IDOL))
+            val target = notNullInput(IDOL, searchIdol)
             readIdol(target!!)
         }
 
-        "5" -> {
-            println("어느 아이돌을 삭제하시겠습니까?")
-            val target = notNullInput("아이돌", searchIdol)
+        "5" -> { // 아이돌 삭제
+            println(DELETE_COMMENT(IDOL))
+            val target = notNullInput(IDOL, searchIdol)
             deleteIdol(target!!)
-            println(completeDelete)
+            println(DELETE_MESSAGE)
         }
 
-        "6" -> {
-            println("어느 아이돌을 보내겠습니까?")
-            val idolTarget = notNullInput("아이돌", searchIdol)
+        "6" -> { // 아이돌 행사 보내기
+            println(MEET_IDOL)
+            val idolTarget = notNullInput(IDOL, searchIdol)
 
-            println("어느 행사에 보내겠습니까?")
-            val eventTarget = notNullInput("행사", searchEvent)
-
-            if (addIdolEvent(idolTarget!!, eventTarget!!)) println("행사 컨택 완료")
+            println(MEET_EVENT)
+            val eventTarget = notNullInput(EVENT, searchEvent)
+            if (addIdolEvent(idolTarget!!, eventTarget!!)) println("$EVENT + $ADD_MESSAGE")
         }
 
-        "7" -> {
-            val target = notNullInput("아이돌", searchIdol)
+        "7" -> { // 아이돌 전체 행사 출력
+            val target = notNullInput(IDOL, searchIdol)
             readIdolEvent(target!!)
         }
 
-        "8" -> {
-            println("어느 아이돌의 행사를 삭제하겠습니까?")
-            val idolTarget = notNullInput("아이돌", searchIdol)
+        "8" -> { // 아이돌 행사 취소
+            println(CANCEL_IDOL)
+            val idolTarget = notNullInput(IDOL, searchIdol)
 
-            println("어느 행사를 삭제하시겠습니까?")
-            val eventTarget = notNullInput("행사", searchEvent)
+            println(DELETE_COMMENT(EVENT))
+            val eventTarget = notNullInput(EVENT, searchEvent)
 
             deleteIdolEvent(idolTarget!!, eventTarget!!)
-            println("${idolTarget}의 ${eventTarget} 행사 삭제 완료")
+            println("${idolTarget}의 ${eventTarget} $DELETE_MESSAGE")
         }
     }
 }
 
 fun menuEvent() {
-    println(menuInfo("메뉴"))
+    println(CHOICE_MENU(EVENT))
     val menu = menuInput(5)
     when (menu) {
-        "1" -> {
+        "1" -> { // 행사 추가
             addEvent()
-            println(completeAdd)
+            println(EVENT + ADD_MESSAGE)
         }
 
-        "2" -> {
-            menuUpdate("행사", searchEvent)
-        }
-
-        "3" -> allPrint(2)
-        "4" -> {
-            println("어느 행사의 정보를 보시겠습니까?")
-            val target = notNullInput("행사", searchEvent)
+        "2" -> menuUpdate(EVENT, searchEvent) // 행사 업데이트
+        "3" -> allPrint(EVENT) // 전체 행사 출력
+        "4" -> { // 특정 행사출력
+            println(READ_COMMENT(EVENT))
+            val target = notNullInput(EVENT, searchEvent)
             readEvent(target!!)
         }
 
-        "5" -> {
-            println("어느 행사를 삭제하시겠습니까?")
-            val target = notNullInput("행사", searchEvent)
+        "5" -> { // 행사 삭제
+            println(DELETE_COMMENT(EVENT))
+            val target = notNullInput(EVENT, searchEvent)
             deleteEvent(target!!)
-            println(completeDelete)
+            println(DELETE_MESSAGE)
         }
     }
 }
