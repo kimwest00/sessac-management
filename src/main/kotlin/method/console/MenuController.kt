@@ -1,5 +1,10 @@
-import method.*
+package method.console
+
 import method.mangement.*
+import method.util.allPrint
+import method.util.menuInput
+import method.util.menuUpdate
+import method.util.notNullInput
 import util.*
 
 fun menuComp() {

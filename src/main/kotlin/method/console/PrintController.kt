@@ -1,6 +1,8 @@
-@file:JvmName("MenuControllerKt")
+@file:JvmName("PrintControllerKt")
 
-import method.menuInput
+package method.console
+
+import method.util.menuInput
 
 val menuName = mapOf("1" to "회사", "2" to "아이돌", "3" to "행사")
 
