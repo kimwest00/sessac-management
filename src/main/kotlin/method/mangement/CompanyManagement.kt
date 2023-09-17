@@ -1,7 +1,6 @@
 package method.mangement
 
 import data.Company
-import data.Idol
 import data.ObjectManagement
 import method.checkExist
 import util.Generator

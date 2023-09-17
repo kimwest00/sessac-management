@@ -1,7 +1,6 @@
-import method.notNullInput
+import method.*
 import method.mangement.*
-import method.menuUpdate
-
+import util.*
 
 fun menuComp() {
     println(CHOICE_MENU(COMP))
@@ -68,7 +67,7 @@ fun menuIdol() {
         }
 
         "8" -> { // 아이돌 행사 취소
-            println(CANCEL_IDOL)
+            println(CANCEL_MEET)
             val idolTarget = notNullInput(IDOL, searchIdol)
 
             println(DELETE_COMMENT(EVENT))

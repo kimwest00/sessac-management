@@ -1,13 +1,7 @@
 package method
 
-import COMP
-import IDOL
-import EVENT
-import UPDATE_MESSAGE
-import FIELD
-import FIELD_IDX
-import INFO_IDX
-import menuInput
+import util.*
+import data.ObjectManagement
 import method.mangement.updateCompany
 import method.mangement.updateEvent
 import method.mangement.updateIdol
@@ -61,6 +55,21 @@ fun <T> menuUpdate(comment: String, searchFunction: (String) -> T) {
     println("${comment} 정보 $UPDATE_MESSAGE")
 }
 
+
+fun menuInput(endNumber: Int): String {
+    while (true) {
+        val menu = readlnOrNull()
+        if (menu == "exit") return menu
+        if (menu.isNullOrEmpty() || menu.toInt() !in 1..endNumber)
+        {
+            println("올바른 메뉴 번호를 입력해주세요.")
+            continue
+        }
+        return menu
+    }
+}
+
+
 fun getDataList(type: String): List<String> {
     val objectIdx = when (type) {
         COMP -> listOf("name", "address", "CEO", "Phone")
@@ -71,3 +80,12 @@ fun getDataList(type: String): List<String> {
     return objectIdx
 }
 
+fun allPrint(comment: String) {
+    println("$comment 목록은 다음과 같습니다.")
+    when (comment) {
+        COMP -> for (item in ObjectManagement.compList) print("${item.name} | ")
+        IDOL -> for (item in ObjectManagement.idolList) print("${item.name} | ")
+        EVENT -> for (item in ObjectManagement.eventList) print("${item.name} | ")
+        else -> println("")
+    }
+}
