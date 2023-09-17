@@ -3,7 +3,7 @@ import method.file.saveFile
 
 suspend fun start() {
     loadFile()
-    printController()
+    mainStart()
     saveFile()
 }
 

@@ -20,11 +20,7 @@ fun addIdol() {
         print("대표 노래 : ")
         val song = readLine()!!
 
-        if (companyName != null && name != null) {
-            ObjectManagement.idolList.add(Idol(id, name, companyName, gender, song))
-        } else {
-            println("아이돌 등록에 실패했습니다. 다시 등록해주세요")
-        }
+        ObjectManagement.idolList.add(Idol(id, name!!, companyName!!, gender, song))
 
     } catch (_: NullPointerException) {
         println("잘못 입력")
@@ -43,14 +39,10 @@ val searchIdol: (String) -> Idol? = { name ->
 
 fun readIdol(name: String) {
     val idol = searchIdol(name)
-    if (idol != null) {
-        for (field in idol.javaClass.declaredFields) {
-            field.isAccessible = true
-            val value = field.get(idol)
-            println("${field.name}: $value")
-        }
-    } else {
-        println("해당하는 아이돌이 없습니다. 다시 검색해주세요")
+    for (field in idol!!.javaClass.declaredFields) {
+        field.isAccessible = true
+        val value = field.get(idol)
+        println("${field.name}: $value")
     }
 }
 
