@@ -1,6 +1,5 @@
 import method.notNullInput
 import method.mangement.*
-import method.menuInput
 import method.menuUpdate
 
 
@@ -22,6 +21,7 @@ fun menuComp() {
             println("어느 회사를 보시겠습니까?")
             val target = notNullInput("회사", searchCompany)
             readCompany(target!!)
+
         }
 
         "5" -> {

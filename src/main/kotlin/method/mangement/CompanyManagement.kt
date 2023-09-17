@@ -42,7 +42,7 @@ fun searchCompany(id: Int): Company? {
 }
 
 val searchCompany: (String) -> Company? = { name ->
-    var tmpCompany:Company? = null
+    var tmpCompany: Company? = null
     ObjectManagement.compList.forEach {
         if (it.name == name) {
             tmpCompany = it
@@ -67,11 +67,11 @@ fun updateCompany(target: String, inputData: String, type: String) {
 
 fun readCompany(name: String) {
     val company = searchCompany(name)
-        for (field in company!!.javaClass.declaredFields) {
-            field.isAccessible = true
-            val value = field.get(company)
-            println("${field.name}: $value")
-        }
+    for (field in company!!.javaClass.declaredFields) {
+        field.isAccessible = true
+        val value = field.get(company)
+        println("${field.name}: $value")
+    }
 }
 
 fun deleteCompany(name: String) {

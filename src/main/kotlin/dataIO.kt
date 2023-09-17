@@ -37,8 +37,13 @@ fun consoleController(inputMenu: String?) {
     }
 }
 
-// 입력 및 null 확인
-
+fun menuInput(endNumber: Int): String {
+    while (true) {
+        val menu = readlnOrNull()
+        if (menu.isNullOrEmpty() || menu.toInt() !in 1..endNumber) continue
+        return menu
+    }
+}
 
 fun allPrint(choiceMenu: Int) {
     when (choiceMenu) {

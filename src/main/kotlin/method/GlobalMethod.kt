@@ -1,5 +1,13 @@
 package method
 
+import COMP
+import IDOL
+import EVENT
+import completeUpdate
+import fieldList
+import fieldListIdx
+import infofIdx
+import menuInput
 import method.mangement.updateCompany
 import method.mangement.updateEvent
 import method.mangement.updateIdol
@@ -39,35 +47,27 @@ fun <T> menuUpdate(comment: String, searchFunction: (String) -> T) {
     val target = notNullInput(comment, searchFunction = searchFunction)
 
     println("바꿀 $comment 정보를 숫자로 입력해 주세요.")
-    // 상수화
-    println("1. 이름\t2. 주소\t3. 대표\t4. 연락처")
-    val infoIdx = readLine()!!.toInt() - 1
+    println(fieldList(comment))
+    val infoIdx = menuInput(fieldListIdx[infofIdx(comment)]).toInt() - 1
 
     println("무엇으로 바꾸시겠습니까?")
-    val goal = readLine()!!
+    val goal = checkExist(comment, searchFunction)
 
     when (comment) {
-        "회사" -> updateCompany(target!!, goal, getDataList(comment)[infoIdx])
-        "아이돌" -> updateIdol(target!!, goal, getDataList(comment)[infoIdx])
-        "행사" -> updateEvent(target!!, goal, getDataList(comment)[infoIdx])
+        COMP -> updateCompany(target!!, goal!!, getDataList(comment)[infoIdx])
+        IDOL -> updateIdol(target!!, goal!!, getDataList(comment)[infoIdx])
+        EVENT -> updateEvent(target!!, goal!!, getDataList(comment)[infoIdx])
     }
-    println("${comment} 정보 업데이트 완료!")
+    println("${comment} 정보 $completeUpdate")
 }
 
 fun getDataList(type: String): List<String> {
     val objectIdx = when (type) {
-        "회사" -> listOf("name", "address", "CEO", "Phone")
-        "아이돌" -> listOf("name", "companyName", "song")
-        "행사" -> listOf("name", "address", "content", "data")
+        COMP -> listOf("name", "address", "CEO", "Phone")
+        IDOL -> listOf("name", "companyName", "song")
+        EVENT -> listOf("name", "address", "content", "date")
         else -> listOf()
     }
     return objectIdx
 }
 
-fun menuInput(endNumber: Int): String {
-    while (true) {
-        val menu = readlnOrNull()
-        if (menu.isNullOrEmpty() || menu.toInt() !in 1..endNumber) continue
-        return menu
-    }
-}
