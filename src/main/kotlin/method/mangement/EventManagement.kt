@@ -2,6 +2,7 @@ package method.mangement
 
 import data.Event
 import data.ObjectManagement
+import method.console.ConsoleReader
 import method.util.checkExist
 import util.Generator
 
@@ -11,11 +12,11 @@ fun addEvent() {
     try {
         name = checkExist("행사 이름", searchEvent)
         print("장소 : ")
-        val address = readLine()!!
+        val address = ConsoleReader.consoleLineInput()
         print("content : ")
-        val content = readLine()!!
+        val content = ConsoleReader.consoleLineInput()
         print("날짜 : ")
-        val date = readLine()!!
+        val date = ConsoleReader.consoleLineInput()
         if (name != null) {
             ObjectManagement.eventList.add(Event(id, name, address, content, date))
         } else {

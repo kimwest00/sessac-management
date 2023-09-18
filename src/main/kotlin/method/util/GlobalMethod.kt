@@ -2,6 +2,7 @@ package method.util
 
 import util.*
 import data.ObjectManagement
+import method.console.ConsoleReader
 import method.mangement.updateCompany
 import method.mangement.updateEvent
 import method.mangement.updateIdol
@@ -11,7 +12,7 @@ fun <T> checkExist(comment: String, searchFunction: (String) -> T): String? {
     var tmpField: String? = null
     while (!isExist) {
         print("${comment} 입력 : ")
-        tmpField = readln()
+        tmpField = ConsoleReader.consoleLineInput()
         searchFunction(tmpField)?.let {
             println("중복되는 ${comment}이 있습니다. 다시 입력해주세요 ")
         } ?: run {
@@ -27,7 +28,7 @@ fun <T> notNullInput(comment: String, searchFunction: (String) -> T): String? {
     var tmpField: String? = null
     while (!isExist) {
         print("${comment} 입력 : ")
-        tmpField = readln()
+        tmpField = ConsoleReader.consoleLineInput()
         searchFunction(tmpField)?.let {
             isExist = true
         } ?: run {
@@ -89,3 +90,4 @@ fun allPrint(comment: String) {
         else -> println("")
     }
 }
+

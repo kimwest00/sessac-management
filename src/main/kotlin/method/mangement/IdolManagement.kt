@@ -2,7 +2,9 @@ package method.mangement
 
 import data.Idol
 import data.ObjectManagement
+import method.console.ConsoleReader
 import method.util.checkExist
+import method.util.notNullInput
 import util.Generator
 
 fun addIdol() {
@@ -12,14 +14,14 @@ fun addIdol() {
     try {
         name = checkExist("아이돌 이름", searchFunction = searchIdol)
 
-        companyName = checkExist("회사 이름", searchFunction = searchCompany)
+        companyName = notNullInput("회사 이름", searchFunction = searchCompany)
 
         print("성별 : ")
-        val gender = readLine()!!
+        val gender = ConsoleReader.consoleLineInput()
 
         print("대표 노래 : ")
-        val song = readLine()!!
-
+        val song = ConsoleReader.consoleLineInput()
+        ObjectManagement.compList[searchCompanyIdx(companyName!!)].idolIdList.add(id)
         ObjectManagement.idolList.add(Idol(id, name!!, companyName!!, gender, song))
 
     } catch (_: NullPointerException) {
