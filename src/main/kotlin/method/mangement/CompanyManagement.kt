@@ -30,15 +30,6 @@ fun addCompany() {
     }
 }
 
-// 반환값 : id
-fun searchCompany(id: Int): Company? {
-    ObjectManagement.compList.forEach {
-        if (it.id == id) {
-            return it
-        }
-    }
-    return null
-}
 
 val searchCompany: (String) -> Company? = { name ->
     var tmpCompany: Company? = null

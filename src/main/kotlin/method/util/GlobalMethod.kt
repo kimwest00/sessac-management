@@ -60,7 +60,7 @@ fun menuInput(endNumber: Int): String {
     while (true) {
         val menu = readlnOrNull()
         if (menu == "exit") return menu
-        if (menu.isNullOrEmpty() || menu.toInt() !in 1..endNumber)
+        if (menu.isNullOrEmpty() || menu.toIntOrNull() !in 1..endNumber)
         {
             println("올바른 메뉴 번호를 입력해주세요.")
             continue

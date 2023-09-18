@@ -40,4 +40,4 @@ val CHOICE_MENU = { menu: String ->
     "1. ${menu} 생성\t2. ${menu} 수정\t3. 전체 ${menu} 출력\t4. 특정 ${menu} 정보 출력\t5. ${menu} 삭제\n"
 }
 val IDOL_EVENT_MENU =
-    "6. 아이돌 행사 보내기\\t7. 아이돌 행사 출력\\t8. 아이돌 행사 삭제"
+    "6. 아이돌 행사 보내기\t7. 아이돌 행사 출력\t8. 아이돌 행사 삭제"

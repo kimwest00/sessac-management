@@ -1,8 +1,10 @@
-@file:JvmName("PrintControllerKt")
-
 package method.console
 
+import method.util.allPrint
 import method.util.menuInput
+import util.COMP
+import util.EVENT
+import util.IDOL
 
 val menuName = mapOf("1" to "회사", "2" to "아이돌", "3" to "행사")
 
@@ -10,6 +12,10 @@ val menuName = mapOf("1" to "회사", "2" to "아이돌", "3" to "행사")
 fun mainStart() {
     var menu: String?
     try {
+        for (item in listOf(COMP, IDOL, EVENT)) {
+            allPrint(item)
+            println("\n")
+        }
         do {
             printMain()
             menu = menuInput(3)
@@ -35,7 +41,7 @@ fun choiceObject(inputMenu: String?) {
 
 fun printMain() {
     println(
-        "\n" +
+        "\n\n" +
                 """            
 열람 할 정보를 선택해주세요. (ex, 1-3)
 1.회사		2. 아이돌	3. 행사

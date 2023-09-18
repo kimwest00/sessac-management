@@ -15,11 +15,5 @@ class ConsoleReader {
             }
             return consoleInput.readLine()
         }
-        fun consoleScanner() : String{
-            if(!this::scanner.isInitialized){
-                scanner = Scanner(System.`in`)
-            }
-            return scanner.nextLine()
-        }
     }
 }

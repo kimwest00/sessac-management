@@ -21,6 +21,7 @@ fun addIdol() {
         val song = readLine()!!
 
         ObjectManagement.idolList.add(Idol(id, name!!, companyName!!, gender, song))
+        ObjectManagement.compList
 
     } catch (_: NullPointerException) {
         println("잘못 입력")

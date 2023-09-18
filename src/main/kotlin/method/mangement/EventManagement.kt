@@ -27,12 +27,13 @@ fun addEvent() {
 }
 
 val searchEvent: (String) -> Event? = { name ->
+    var event: Event? = null
     ObjectManagement.eventList.forEach {
         if (it.name == name) {
-            it
+            event = it
         }
     }
-    null
+    event
 }
 
 fun searchEvent(id: Int): String? {
