@@ -12,6 +12,7 @@ const val EVENT = "이벤트"
 const val ADD_MESSAGE = "추가 완료"
 const val UPDATE_MESSAGE = "업데이트 완료"
 const val DELETE_MESSAGE = "삭제 완료"
+const val FAIL_DUPLICATE_MESSAGE = "중복되어 등록에 실패했습니다"
 
 const val COMPANY_FIELD = "1. 이름\t2. 주소\t3. 대표\t4. 연락처"
 const val IDOL_FIELD = "1. 이름\t2. 회사\t3. 대표곡"
