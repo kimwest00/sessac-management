@@ -2,6 +2,7 @@ package method.mangement
 
 import data.Company
 import data.ObjectManagement
+import method.console.ConsoleReader
 import method.util.checkExist
 import util.Generator
 
@@ -15,11 +16,11 @@ fun addCompany() {
     try {
         name = checkExist("회사 이름", searchCompany)
         print("주소 : ")
-        val address = readLine()!!
+        val address = ConsoleReader.consoleLineInput()
         print("대표 : ")
-        val ceo = readLine()!!
+        val ceo = ConsoleReader.consoleLineInput()
         print("전화번호 : ")
-        val phone = readLine()!!
+        val phone = ConsoleReader.consoleLineInput()
         if (name != null) {
             ObjectManagement.compList.add(Company(id, name, address, ceo, phone))
         } else {
@@ -29,15 +30,13 @@ fun addCompany() {
         println("잘못 입력")
     }
 }
-
 // 반환값 : id
-fun searchCompany(id: Int): Company? {
-    ObjectManagement.compList.forEach {
-        if (it.id == id) {
-            return it
-        }
+fun searchCompanyIdx(name: String): Int {
+    var targetIdx:Int = -1
+    ObjectManagement.compList.forEachIndexed { idx, comp ->
+        if (comp.name == name) targetIdx = idx
     }
-    return null
+    return targetIdx
 }
 
 val searchCompany: (String) -> Company? = { name ->

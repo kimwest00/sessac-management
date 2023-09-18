@@ -60,6 +60,6 @@ suspend fun <T> multiDeserializeObject(fp: String):ArrayList<T> {
             }
         }
     }
-    println(objectList)
+//    println(objectList)
     return objectList
 }
