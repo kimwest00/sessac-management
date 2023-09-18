@@ -79,7 +79,11 @@ fun addIdolEvent(idolName: String, eventName: String): Boolean {
     searchIdol(idolName)?.let { idolIdx = ObjectManagement.idolList.indexOf(it) } ?: run {
         return false
     }
-    ObjectManagement.idolList[idolIdx].eventIdList.add(tmpEventId.id)
+    if(!ObjectManagement.idolList[idolIdx].eventIdList.contains(tmpEventId.id)){
+        ObjectManagement.idolList[idolIdx].eventIdList.add(tmpEventId.id)
+    }else{
+        return false
+    }
     return true
 }
 

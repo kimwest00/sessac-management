@@ -39,6 +39,7 @@ fun <T> notNullInput(comment: String, searchFunction: (String) -> T): String? {
 }
 
 fun <T> menuUpdate(comment: String, searchFunction: (String) -> T) {
+    allPrint(comment)
     val target = notNullInput(comment, searchFunction = searchFunction)
 
     println("바꿀 $comment 정보를 숫자로 입력해 주세요.")
