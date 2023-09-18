@@ -1,5 +1,6 @@
 package method.console
 
+import data.ObjectManagement
 import method.mangement.*
 import method.util.allPrint
 import method.util.menuInput

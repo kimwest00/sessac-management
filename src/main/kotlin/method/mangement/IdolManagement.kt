@@ -102,10 +102,10 @@ fun readIdolEvent(idolName: String) {
         if (tmpIdol!!.eventIdList.isEmpty()) {
             print("${idolName}은 현재 행사가 없습니다")
         } else {
-            print("${idolName}은 아래와 같은 행사에 참여중입니다.")
+            print("${idolName}은 아래와 같은 행사에 참여중입니다.\n")
 
             for (id in tmpIdol!!.eventIdList) {
-                println(searchEvent(id))
+                print("${searchEvent(id)} | ")
             }
         }
 

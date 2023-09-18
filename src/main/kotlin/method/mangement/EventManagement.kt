@@ -71,6 +71,9 @@ fun readEvent(name: String) {
 
 fun deleteEvent(name: String) {
     var targetIdx = -1
+    for (idol in ObjectManagement.idolList) {
+        deleteIdolEvent(idol.name, name)
+    }
     ObjectManagement.eventList.forEachIndexed { idx, event ->
         if (event.name == name) targetIdx = idx
     }
