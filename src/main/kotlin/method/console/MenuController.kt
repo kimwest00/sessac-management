@@ -63,7 +63,7 @@ fun menuIdol() {
 
             println(MEET_EVENT)
             val eventTarget = notNullInput(EVENT, searchEvent)
-            if (addIdolEvent(idolTarget!!, eventTarget!!)) println("$EVENT + $ADD_MESSAGE")
+            if (addIdolEvent(idolTarget!!, eventTarget!!)) println("$EVENT $ADD_MESSAGE")
         }
 
         "7" -> { // 아이돌 전체 행사 출력
