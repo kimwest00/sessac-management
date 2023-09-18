@@ -2,7 +2,7 @@ package method.mangement
 
 import data.Event
 import data.ObjectManagement
-import method.checkExist
+import method.util.checkExist
 import util.Generator
 
 fun addEvent() {

@@ -1,3 +1,4 @@
+import method.console.mainStart
 import method.file.loadFile
 import method.file.saveFile
 

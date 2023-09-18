@@ -1,4 +1,4 @@
-package util
+package method.console
 
 import java.io.BufferedReader
 import java.io.InputStreamReader
